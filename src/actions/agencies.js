@@ -30,7 +30,7 @@ export const fetchAgency = params => dispatch => {
   dispatch(fetchingAgency())
 
   return api
-    .getAgency(params.place)
+    .getAgencyDetails(params.place)
     .then(agency => dispatch(receivedAgency(agency)))
     .catch(error => dispatch(failedAgency(error)))
 }

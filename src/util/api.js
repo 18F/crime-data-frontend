@@ -8,6 +8,336 @@ import { oriToState } from './agencies'
 import { slugify } from './text'
 
 export const API = '/api-proxy'
+
+// Agencies
+const getAgencies = () => (
+  get(`${API}/agencies`));
+
+const getAgencyDetails = ori => (
+  get(`${API}/agencies/${ori}`));
+
+const getAgencyParticipation = () => (
+  get(`${API}/agencies/participation`));
+
+// Agencies' SubOffenses Counts
+const getAgencySumsByState = stateAbbr => (
+  get(`${API}/agencies/count/states/suboffenses/${stateAbbr}`));
+
+const getAgencySumsByOri = (stateAbbr, ori) => (
+  get(`${API}/agencies/count/states/suboffenses/${stateAbbr}/${ori}`));
+
+const getAgencySumsByCounty = (stateAbbr, countyCode) => (
+  get(`${API}/agencies/count/states/suboffenses/${stateAbbr}/counties/${countyCode}`));
+
+// Agencies' Offenses Counts
+const getAgencyOffensesByState = stateAbbr => (
+  get(`${API}/agencies/count/states/${stateAbbr}/offenses`));
+
+const getAgencyOffensesByOri = ori => (
+  get(`${API}/agencies/count/${ori}/offenses`));
+
+const getAgencyOffensesByCounty = (stateAbbr, countyCode) => (
+  get(`${API}/agencies/count/states/offenses/${stateAbbr}/countes/${countyCode}`));
+
+// Arrests
+const getArrestsNational = () => (
+  get(`${API}/arrests/national`));
+
+// Arson
+const getArsonNational = () => (
+  get(`${API}/arson/national`));
+
+const getArsonByRegion = regionName => (
+  get(`${API}/arson/region/${regionName}`));
+
+const getArsonByState = stateAbbr => (
+  get(`${API}/arson/state/${stateAbbr}`));
+
+// Codes
+const getCodeTypes = () => (
+  get(`${API}/codes`));
+
+const getCodes = codeType => (
+  get(`${API}/codes/${codeType}`));
+
+// Cargo Theft
+// VARIABLES = ['location_name', 'offense_name', 'victim_type_name', 'prop_desc_name']
+const getCargoTheftNational = v => (
+  get(`${API}/ct/count/national/${v}`));
+
+const getCargoTheftByStateId = (id, v) => (
+  get(`${API}/ct/count/states/${id}/${v}`));
+
+const getCargoTheftByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/ct/count/states/${stateAbbr}/${v}`));
+
+const getCargoTheftByOri = (ori, v) => (
+  get(`${API}/ct/count/agencies/${ori}/${v}`));
+
+// Cargo Theft Offenses
+// VARIABLES = ['location_name', 'victim_type_name', 'prop_desc_name']
+const getCargoTheftOffensesNational = v => (
+  get(`${API}/ct/count/national/${v}/offenses`));
+
+const getCargoTheftOffensesByStateId = (id, v) => (
+  get(`${API}/ct/count/states/${id}/${v}/offenses`));
+
+const getCargoTheftOffensesByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/ct/count/states/${stateAbbr}/${v}/offenses`));
+
+const getCargoTheftOffensesByOri = (ori, v) => (
+  get(`${API}/ct/count/agencies/${ori}/${v}/offenses`));
+
+// Estimates
+const getEstimatesNational = () => (
+  get(`${API}/estimates/national`));
+
+const getEstimatesByRegion = regionName => (
+  get(`${API}/estimates/regions/${regionName}`));
+
+const getEstimatesByState = stateAbbr => (
+  get(`${API}/estimates/states/${stateAbbr}`));
+
+// Geo
+const getGeoByState = id => (
+  get(`${API}/geo/states/${id}`));
+
+const getGeoByCounty = id => (
+  get(`${API}/geo/counties/${id}`));
+
+// Hate Crimes
+// VARIABLES = ['bias_name']
+const getHateCrimeNational = v => (
+  get(`${API}/hc/count/national/${v}`));
+
+const getHateCrimeByStateId = (id, v) => (
+  get(`${API}/hc/count/states/${id}/${v}`));
+
+const getHateCrimeByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/hc/count/states/${stateAbbr}/${v}`));
+
+const getHateCrimeByOri = (ori, v) => (
+  get(`${API}/hc/count/agencies/${ori}/${v}`));
+
+// Hate Crime Offenses
+// VARIABLES = ['bias_name']
+const getHateCrimeOffensesNational = v => (
+  get(`${API}/hc/count/national/${v}/offenses`));
+
+const getHateCrimeOffensesByStateId = (id, v) => (
+  get(`${API}/hc/count/states/${id}/${v}/offenses`));
+
+const getHateCrimeOffensesByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/hc/count/states/${stateAbbr}/${v}/offenses`));
+
+const getHateCrimeOffensesByOri = (ori, v) => (
+  get(`${API}/hc/count/agencies/${ori}/${v}/offenses`));
+
+// Human Traffic
+const getHumanTrafficAgencies = () => (
+  get(`${API}/ht/agencies`));
+
+const getHumanTrafficStates = () => (
+  get(`${API}/ht/states`));
+
+// Leoka Assault
+const getLeokaAssaultNation = v => (
+  get(`${API}/leoka/assault/national/${v}`));
+
+const getLeokaAssaultByRegion = (regionName, v) => (
+  get(`${API}/leoka/assault/region/${regionName}/${v}`));
+
+const getLeokaAssaultByState = (stateAbbr, v) => (
+  get(`${API}/leoka/assault/states/${stateAbbr}/${v}`));
+
+const getLeokaAssaultByOri = (ori, v) => (
+  get(`${API}/leoka/assault/agencies/${ori}/${v}`));
+
+const getLeokaAssaultTimeDist = () => (
+  get(`${API}/leoka/assault/time-distribution`));
+
+// Lookups
+const getLookupRegion = () => (
+  get(`${API}/lookup/region`));
+
+const getLookupState = () => (
+  get(`${API}/lookup/state`));
+
+// NIBRS Victim
+// VARIABLES = ['sex', 'age', 'race', 'ethnicity', 'location']
+const getNibrsVictimNational = () => (
+  get(`${API}/nibrs/victim/count/national`));
+
+const getNibrsVictimNationalByFilter = v => (
+  get(`${API}/nibrs/victim/count/national/${v}`));
+
+const getNibrsVictimByStateAbbr = stateAbbr => (
+  get(`${API}/nibrs/victim/count/states/${stateAbbr}`));
+
+const getNibrsVictimByStateAbbrAndFilter = (stateAbbr, v) => (
+  get(`${API}/nibrs/victim/count/states/${stateAbbr}/${v}`));
+
+const getNibrsVictimByOri = ori => (
+  get(`${API}/nibrs/victim/count/agencies/${ori}`));
+
+const getNibrsVictimByOriAndFilter = (ori, v) => (
+  get(`${API}/nibrs/victim/count/agencies/${ori}/${v}`));
+
+
+// NIBRS Offender
+// VARIABLES = ['sex', 'age', 'race', 'ethnicity']
+const getNibrsOffenderNational = () => (
+  get(`${API}/nibrs/offender/count/national`));
+
+const getNibrsOffenderNationalByFilter = v => (
+  get(`${API}/nibrs/offender/count/national/${v}`));
+
+const getNibrsOffenderByStateAbbr = stateAbbr => (
+  get(`${API}/nibrs/offender/count/states/${stateAbbr}`));
+
+const getNibrsOffenderByStateAbbrAndFilter = (stateAbbr, v) => (
+  get(`${API}/nibrs/offender/count/states/${stateAbbr}/${v}`));
+
+const getNibrsOffenderByOri = ori => (
+  get(`${API}/nibrs/offender/count/agencies/${ori}`));
+
+const getNibrsOffenderByOriAndFilter = (ori, v) => (
+  get(`${API}/nibrs/offender/count/agencies/${ori}/${v}`));
+
+// NIBRS Victim Offender Relationship
+const getNibrsVictimOffenderRelNational = () => (
+  get(`${API}/nibrs/victim/count/national/relationships`));
+
+const getNibrsVictimOffenderRelByStateAbbr = stateAbbr => (
+  get(`${API}/nibrs/victim/count/states/${stateAbbr}/relationships`));
+
+const getNibrsVictimOffenderRelByOri = ori => (
+  get(`${API}/nibrs/victim/count/agencies/${ori}/relationships`));
+
+// NIBRS Offenses
+const getNibrsOffenseNational = () => (
+  get(`${API}/nibrs/offense/count/national`));
+
+const getNibrsOffenseByStateAbbr = stateAbbr => (
+  get(`${API}/nibrs/offense/count/states/${stateAbbr}`));
+
+const getNibrsOffenseByOri = ori => (
+  get(`${API}/nibrs/offense/count/agencies/${ori}`));
+
+// Offenders
+// VARIABLES = ['ethnicity', 'prop_desc_name', 'offense_name',
+// 'race_code', 'location_name', 'age_num', 'sex_code']
+const getOffendersNational = v => (
+  get(`${API}/offenders/count/national/${v}`));
+
+const getOffendersByStateId = (id, v) => (
+  get(`${API}/offenders/count/states/${id}/${v}`));
+
+const getOffendersByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/offenders/count/states/${stateAbbr}/${v}`));
+
+const getOffendersByOri = (ori, v) => (
+  get(`${API}/offenders/count/agencies/${ori}/${v}`));
+
+// Offender By Offenses
+// VARIABLES = ['ethnicity', 'race_code', 'age_num', 'sex_code']
+const getOffenderOffensesNational = v => (
+  get(`${API}/offenders/count/national/${v}/offenses`));
+
+const getOffenderOffensesByStateId = (id, v) => (
+  get(`${API}/offenders/count/states/${id}/${v}/offenses`));
+
+const getOffenderOffensesByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/offenders/count/states/${stateAbbr}/${v}/offenses`));
+
+const getOffenderOffensesByOri = (ori, v) => (
+  get(`${API}/offenders/count/agencies/${ori}/${v}/offenses`));
+
+// Offenses
+// VARIABLES = ['weapon_name', 'method_entry_code', 'num_premises_entered',
+// 'location_name', 'offense_name']
+const getOffensesNational = v => (
+  get(`${API}/offenses/count/national/${v}`));
+
+const getOffensesByStateId = (id, offense) => (
+  get(`${API}/offenses/count/states/${id}/${offense}`));
+
+const getOffensesByStateAbbr = (stateAbbr, offense) => (
+  get(`${API}/offenses/count/states/${stateAbbr}/${offense}`));
+
+const getOffensesByOri = (ori, offense) => (
+  get(`${API}/offenses/count/agencies/${ori}/${offense}`));
+
+// Offense By Offense Types
+// VARIABLES = ['weapon_name', 'method_entry_code', 'num_premises_entered',
+// 'location_name']
+const getOffensesByOffenseNational = v => (
+  get(`${API}/offenses/count/national/${v}/offenses`));
+
+const getOffensesByOffenseByStateId = (id, v) => (
+  get(`${API}/offenses/count/states/${id}/${v}/offenses`));
+
+const getOffensesByOffenseByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/offenses/count/states/${stateAbbr}/${v}/offenses`));
+
+const getOffensesByOffenseByOri = (ori, v) => (
+  get(`${API}/offenses/count/agencies/${ori}/${v}/offenses`));
+
+// Participation
+const getParticipationNational = () => (
+  get(`${API}/participation/national`));
+
+const getParticipationByRegion = regionName => (
+  get(`${API}/participation/regions/${regionName}`));
+
+const getParticipationByState = stateAbbr => (
+  get(`${API}/participation/states/${stateAbbr}`));
+
+// Police Employment Data
+const getPoliceEmploymentNational = () => (
+  get(`${API}/police-employment/national`));
+
+const getPoliceEmploymentByRegion = regionName => (
+  get(`${API}/police-employment/region/${regionName}`));
+
+const getPoliceEmploymentByStateAbbr = stateAbbr => (
+  get(`${API}/police-employment/states/${stateAbbr}`));
+
+const getPoliceEmploymentByOri = (ori) => (
+  get(`${API}/police-employment/agencies/${ori}`));
+
+// Victims
+// VARIABLES = ['prop_desc_name', 'offense_name', 'ethnicity',
+// 'resident_status_code', 'offender_relationship',
+// 'circumstance_name', 'race_code', 'location_name',
+// 'age_num', 'sex_code']
+const getVictimsNational = v => (
+  get(`${API}/victims/count/national/${v}`));
+
+const getVictimsByStateId = (id, v) => (
+  get(`${API}/victims/count/states/${id}/${v}`));
+
+const getVictimsByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/victims/count/states/${stateAbbr}/${v}`));
+
+const getVictimsByOri = (ori, v) => (
+  get(`${API}/victims/count/agences/${ori}/${v}`));
+
+// Victim By Offenses
+// VARIABLES = ['resident_status_code', 'offender_relationship',
+// 'circumstance_name', 'ethnicity', 'race_code', 'age_num', 'sex_code']
+const getVictimOffensesNational = v => (
+  get(`${API}/victims/count/national/${v}/offenses`));
+
+const getVictimOffensesByStateId = (id, v) => (
+  get(`${API}/victims/count/states/${id}/${v}/offenses`));
+
+const getVictimOffensesByStateAbbr = (stateAbbr, v) => (
+  get(`${API}/victims/count/states/${stateAbbr}/${v}/offenses`));
+
+const getVictimOffensesByOri = (ori, v) => (
+  get(`${API}/victims/count/agencies/${ori}/${v}/offenses`));
+
 export const nationalKey = 'united-states'
 
 const dimensionEndpoints = {
@@ -18,8 +348,6 @@ const dimensionEndpoints = {
   relationship: 'offender_relationship',
   sexCode: 'sex_code',
 }
-
-const getAgency = ori => get(`${API}/agencies/${ori}`)
 
 const fetchNibrs = ({ crime, dim, place, placeType, type, placeId }) => {
   const loc =
@@ -245,9 +573,11 @@ const getNibrsCountsRequests = params => {
 }
 
 export default {
+  getAgencies,
+  getAgencyDetails,
+  getAgencyParticipation,
   fetchAggregates,
   fetchAgencyAggregates,
-  getAgency,
   fetchNibrs,
   getNibrsRequests,
   fetchNibrsCounts,
