@@ -76,7 +76,7 @@ describe('agency action', () => {
 
     it('should dispatch AGENCY_FETCHING and AGENCY_RECEIVED', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(api, 'getAgency', () => createPromise(success))
+      sandbox.stub(api, 'getAgencyDetails', () => createPromise(success))
       fetchAgency('CAFAKEORI')(dispatch).then(() => {
         const first = dispatch.getCall(0)
         const second = dispatch.getCall(1)
@@ -88,7 +88,7 @@ describe('agency action', () => {
 
     it('should dispatch AGENCY_FAILED if API call fails', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(api, 'getAgency', () => createPromise(undefined, error))
+      sandbox.stub(api, 'getAgencyDetails', () => createPromise(undefined, error))
       fetchAgency('CAFAKEORI')(dispatch).then(() => {
         const dispatched = dispatch.getCall(1)
         expect(dispatched.args[0].type).toEqual('AGENCY_FAILED')

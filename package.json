@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "autotrack": "^2.3.2",
+    "array-includes": "^3.0.1",
     "axios": "^0.15.3",
     "babel-polyfill": "^6.20.0",
     "basscss-sass": "^4.0.0",
@@ -69,6 +70,7 @@
     "normalize.css": "^5.0.0",
     "pluralize": "^3.1.0",
     "prop-types": "^15.5.8",
+    "promise": "^8.0.1",
     "react": "^15.5.1",
     "react-dom": "^15.4.1",
     "react-helmet": "^5.1.3",
