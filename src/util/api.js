@@ -656,36 +656,36 @@ const getSummaryRequests = ({ crime, place, placeType, placeId }) => {
   }
   return [fetchAggregates(place, placeType, placeId), fetchAggregates()]
 }
-
-const getUcrParticipation = (place, placeId, placeType) => {
-  let path
-
-  if (place === nationalKey) {
-    path = 'participation/national';
-  } else if (placeType === 'state') {
-    path = `participation/states/${placeId}`
-  } else if (placeType === 'region') {
-    path = `participation/regions/${place}`
-  }
-
-  return get(`${API}/${path}`).then(response => ({
-    place,
-    results: response.results,
-  }))
-}
-
-const getUcrParticipationRequests = filters => {
-  const { place, placeType, placeId } = filters
-
-  const requests = [getUcrParticipation(place, placeId, placeType)]
-
-  // add national request (unless you already did)
-  if (place !== nationalKey) {
-    requests.push(getUcrParticipation(nationalKey))
-  }
-
-  return requests
-}
+//
+// const getUcrParticipation = (place, placeId, placeType) => {
+//   let path
+//
+//   if (place === nationalKey) {
+//     path = 'participation/national';
+//   } else if (placeType === 'state') {
+//     path = `participation/states/${placeId}`
+//   } else if (placeType === 'region') {
+//     path = `participation/regions/${place}`
+//   }
+//
+//   return get(`${API}/${path}`).then(response => ({
+//     place,
+//     results: response.results,
+//   }))
+// }
+//
+// const getUcrParticipationRequests = filters => {
+//   const { place, placeType, placeId } = filters
+//
+//   const requests = [getUcrParticipation(place, placeId, placeType)]
+//
+//   // add national request (unless you already did)
+//   if (place !== nationalKey) {
+//     requests.push(getUcrParticipation(nationalKey))
+//   }
+//
+//   return requests
+// }
 
 
 const getUcrRegions = () => {
@@ -873,8 +873,6 @@ export default {
   fetchNibrsCounts,
   getNibrsCountsRequests,
   getSummaryRequests,
-  getUcrParticipation,
-  getUcrParticipationRequests,
   getUcrRegions,
   getUcrRegionRequests,
   getUcrStates,

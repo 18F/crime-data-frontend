@@ -20,10 +20,20 @@ export const receivedUcrParticipation = results => ({
   results,
 })
 
-export const fetchUcrParticipation = (filters, region, states) => dispatch => {
+export const fetchUcrParticipation = filters => dispatch => {
   dispatch(fetchingUcrParticipation())
-  const requests = api.getUcrParticipationRequests(filters, region, states)
+  const { place, placeType, placeId } = filters
+  const requests = [api.getParticipationNational()];
+  if (placeType === 'state') {
+    requests.push(api.getParticipationByState(placeId));
+  } else if (placeType === 'region') {
+    requests.push(api.getParticipationByRegion(place));
+  }
+  // const requests = api.getUcrParticipationRequests(filters, region, states)
   return Promise.all(requests)
+    // .then(response => ({
+    //   place, results: response.results
+    // }))
     .then(data => reshapeData(data))
     .then(results => dispatch(receivedUcrParticipation(results)))
     .catch(error => dispatch(failedUcrParticipation(error)))
