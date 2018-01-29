@@ -3,7 +3,7 @@ import {
   UCR_PARTICIPATION_FETCHING,
   UCR_PARTICIPATION_RECEIVED,
 } from './constants'
-import api from '../util/api'
+import api from '../util/api/participation'
 import { reshapeData } from '../util/participation'
 
 export const failedUcrParticipation = error => ({

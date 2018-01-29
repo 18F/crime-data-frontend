@@ -13,7 +13,7 @@ import {
   receivedUcrParticipation,
   fetchUcrParticipation,
 } from '../../src/actions/participation'
-import api from '../../src/util/api'
+import api from '../../src/util/api/participation'
 
 const createPromise = (res, err) => {
   if (!err) return Promise.resolve(res)

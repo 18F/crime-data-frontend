@@ -13,7 +13,7 @@ import {
   fetchingAgency,
   receivedAgency,
 } from '../../src/actions/agencies'
-import api from '../../src/util/api'
+import api from '../../src/util/api/agencies'
 
 const createPromise = (res, err) => {
   if (!err) return Promise.resolve(res)
@@ -91,7 +91,7 @@ describe('agency action', () => {
       sandbox.stub(api, 'getAgencyDetails', () => createPromise(undefined, error))
       fetchAgency('CAFAKEORI')(dispatch).then(() => {
         const dispatched = dispatch.getCall(1)
-        expect(dispatched.args[0].type).toEqual('AGENCY_FAILED')
+        expect(dispatched.args[0].type).toEqual(AGENCY_FAILED)
         done()
       })
     })
