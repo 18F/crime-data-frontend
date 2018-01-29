@@ -161,36 +161,36 @@ const getSummaryRequests = ({ crime, place, placeType, placeId }) => {
 // }
 
 
-const getUcrRegions = () => {
-  const path = 'lookup/region'
+// const getUcrRegions = () => {
+//   const path = 'lookup/region'
+//
+//   return get(`${API}/${path}`).then(response => ({
+//     results: response.results,
+//   }))
+// }
+//
+// const getUcrRegionRequests = () => {
+//   const requests = [];
+//   requests.push(getUcrRegions())
+//
+//   return requests
+// }
 
-  return get(`${API}/${path}`).then(response => ({
-    results: response.results,
-  }))
-}
 
-const getUcrRegionRequests = () => {
-  const requests = [];
-  requests.push(getUcrRegions())
+// const getUcrStates = () => {
+//   const path = 'lookup/state?per_page=100'
+//
+//   return get(`${API}/${path}`).then(response => ({
+//     results: response.results,
+//   }))
+// }
 
-  return requests
-}
-
-
-const getUcrStates = () => {
-  const path = 'lookup/state?per_page=100'
-
-  return get(`${API}/${path}`).then(response => ({
-    results: response.results,
-  }))
-}
-
-const getUcrStatesRequests = () => {
-  const requests = [];
-  requests.push(getUcrStates())
-
-  return requests
-}
+// const getUcrStatesRequests = () => {
+//   const requests = [];
+//   requests.push(getUcrStates())
+//
+//   return requests
+// }
 
 export const formatError = error => ({
   code: error.response.status,
@@ -251,9 +251,5 @@ export default {
   getNibrsRequests,
   fetchNibrsCounts,
   getNibrsCountsRequests,
-  getSummaryRequests,
-  getUcrRegions,
-  getUcrRegionRequests,
-  getUcrStates,
-  getUcrStatesRequests,
+  getSummaryRequests
 }

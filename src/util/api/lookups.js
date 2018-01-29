@@ -8,7 +8,7 @@ export const API = '/api-proxy'
 const getLookupRegion = () => (
   get(`${API}/lookup/region`));
 
-const getLookupState = () => (
-  get(`${API}/lookup/state`));
+const getLookupState = perPage => (
+  get(`${API}/lookup/state?per_page=${perPage}`));
 
 export default { getLookupRegion, getLookupState }

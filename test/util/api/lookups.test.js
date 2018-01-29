@@ -43,11 +43,11 @@ describe('api utility lookups', () => {
   })
 
   describe('getLookupState()', () => {
-    it('should be /lookup/state', done => {
+    it('should be /lookup/state?per_page=100', done => {
       const spy = sandbox.stub(http, 'get', () => createPromise(success))
-      api.getLookupState().then(() => {
+      api.getLookupState(100).then(() => {
         const spyArgs = spy.args[0];
-        const expectedUrl = '/api-proxy/lookup/state'
+        const expectedUrl = '/api-proxy/lookup/state?per_page=100'
         expect(spyArgs[0]).toEqual(expectedUrl)
         expect(spyArgs.length).toEqual(1)
         done()

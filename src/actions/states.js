@@ -3,7 +3,7 @@ import {
   UCR_STATE_FETCHING,
   UCR_STATE_RECEIVED,
 } from './constants'
-import api from '../util/api'
+import api from '../util/api/lookups'
 import reshapeData from '../util/states'
 
 export const failedUcrState = error => ({
@@ -22,8 +22,9 @@ export const receivedUcrState = states => ({
 
 export const fetchUcrState = () => dispatch => {
   dispatch(fetchingUcrState())
-  const requests = api.getUcrStatesRequests()
+  const requests = api.getLookupState(100)
   return Promise.all(requests)
+    .then(response => ({ results: response.results }))
     .then(data => dispatch(receivedUcrState(reshapeData(data))))
     .catch(error => dispatch(failedUcrState(error)))
 }
