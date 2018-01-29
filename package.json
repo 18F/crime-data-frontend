@@ -16,7 +16,7 @@
     "lint:js":
       "eslint src scripts server.js --ignore-path .gitignore || exit 0",
     "lint:yml": "yamllint content/**/*.yml || exit 0",
-    "test": "jest --env=jsdom --no-cache",
+    "test": "jest --env=jsdom --no-cache --maxWorkers=2",
     "test:debug": "node --debug-brk jest -i --env=jsdom",
     "test:watch": "jest --env=jsdom --watch",
     "selenium:run":
