@@ -7,8 +7,7 @@ import {
   AGENCY_FETCHING,
   AGENCY_RECEIVED,
 } from './constants'
-import api from '../util/api/agencies'
-import { formatError } from '../util/api'
+import api, { formatError } from '../util/api/agencies'
 import { reshapeData } from '../util/agencies'
 
 // fetching individual agency details...

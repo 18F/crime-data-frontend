@@ -4,6 +4,12 @@ import { get } from '../http'
 
 export const API = '/api-proxy'
 
+export const formatError = error => ({
+  code: error.response.status,
+  message: error.message,
+  url: error.config.url,
+})
+
 // Agencies
 const getAgencies = () => (
   get(`${API}/agencies`));

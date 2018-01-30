@@ -13,7 +13,7 @@ import {
   fetchingAgency,
   receivedAgency,
 } from '../../src/actions/agencies'
-import api from '../../src/util/api/agencies'
+import api, { formatError } from '../../src/util/api/agencies'
 
 const createPromise = (res, err) => {
   if (!err) return Promise.resolve(res)
@@ -93,6 +93,20 @@ describe('agency action', () => {
         const dispatched = dispatch.getCall(1)
         expect(dispatched.args[0].type).toEqual(AGENCY_FAILED)
         done()
+      })
+    })
+
+    describe('formatError()', () => {
+      it('should reshape the fetch error object', () => {
+        const fakeError = {
+          response: { status: 400 },
+          message: 'fake error',
+          config: { url: 'fake/url' },
+        }
+        const actual = formatError(fakeError)
+        expect(actual.code).toEqual(400)
+        expect(actual.message).toEqual('fake error')
+        expect(actual.url).toEqual('fake/url')
       })
     })
   })

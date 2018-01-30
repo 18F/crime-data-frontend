@@ -12,86 +12,86 @@ const NIBRS_VICTIM_VALID_VALUES = ['sex', 'age', 'race', 'ethnicity', 'location'
 const NIBRS_OFFENDER_VALID_VALUES = ['sex', 'age', 'race', 'ethnicity']
 
 // NIBRS Victim
-const getNibrsVictimNational = () => (
-  get(`${API}/nibrs/victim/count/national`));
+const getNibrsVictimNational = params => (
+  get(`${API}/nibrs/victim/count/national`, params));
 
-const getNibrsVictimNationalByFilter = v => {
+const getNibrsVictimNationalByFilter = (v, params) => {
   if (includes(NIBRS_VICTIM_VALID_VALUES, v)) {
-    return get(`${API}/nibrs/victim/count/national/${v}`);
+    return get(`${API}/nibrs/victim/count/national/${v}`, params);
   }
   return badRequest();
 }
 
-const getNibrsVictimByStateAbbr = stateAbbr => (
-  get(`${API}/nibrs/victim/count/states/${stateAbbr}`));
+const getNibrsVictimByStateAbbr = (stateAbbr, params) => (
+  get(`${API}/nibrs/victim/count/states/${stateAbbr}`, params));
 
-const getNibrsVictimByStateAbbrAndFilter = (stateAbbr, v) => {
+const getNibrsVictimByStateAbbrAndFilter = (stateAbbr, v, params) => {
   if (includes(NIBRS_VICTIM_VALID_VALUES, v)) {
-    return get(`${API}/nibrs/victim/count/states/${stateAbbr}/${v}`);
+    return get(`${API}/nibrs/victim/count/states/${stateAbbr}/${v}`, params);
   }
   return badRequest();
 }
 
-const getNibrsVictimByOri = ori => (
-  get(`${API}/nibrs/victim/count/agencies/${ori}`));
+const getNibrsVictimByOri = (ori, params) => (
+  get(`${API}/nibrs/victim/count/agencies/${ori}`, params));
 
-const getNibrsVictimByOriAndFilter = (ori, v) => {
+const getNibrsVictimByOriAndFilter = (ori, v, params) => {
   if (includes(NIBRS_VICTIM_VALID_VALUES, v)) {
-    return get(`${API}/nibrs/victim/count/agencies/${ori}/${v}`);
+    return get(`${API}/nibrs/victim/count/agencies/${ori}/${v}`, params);
   }
   return badRequest();
 }
 
 // NIBRS Offender
-const getNibrsOffenderNational = () => (
-  get(`${API}/nibrs/offender/count/national`));
+const getNibrsOffenderNational = params => (
+  get(`${API}/nibrs/offender/count/national`, params));
 
-const getNibrsOffenderNationalByFilter = v => {
+const getNibrsOffenderNationalByFilter = (v, params) => {
   if (includes(NIBRS_OFFENDER_VALID_VALUES, v)) {
-    return get(`${API}/nibrs/offender/count/national/${v}`);
+    return get(`${API}/nibrs/offender/count/national/${v}`, params);
   }
   return badRequest();
 }
 
-const getNibrsOffenderByStateAbbr = stateAbbr => (
-  get(`${API}/nibrs/offender/count/states/${stateAbbr}`));
+const getNibrsOffenderByStateAbbr = (stateAbbr, params) => (
+  get(`${API}/nibrs/offender/count/states/${stateAbbr}`, params));
 
-const getNibrsOffenderByStateAbbrAndFilter = (stateAbbr, v) => {
+const getNibrsOffenderByStateAbbrAndFilter = (stateAbbr, v, params) => {
   if (includes(NIBRS_OFFENDER_VALID_VALUES, v)) {
-    return get(`${API}/nibrs/offender/count/states/${stateAbbr}/${v}`);
+    return get(`${API}/nibrs/offender/count/states/${stateAbbr}/${v}`, params);
   }
   return badRequest();
 }
 
-const getNibrsOffenderByOri = ori => (
-  get(`${API}/nibrs/offender/count/agencies/${ori}`));
+const getNibrsOffenderByOri = (ori, params) => (
+  get(`${API}/nibrs/offender/count/agencies/${ori}`, params));
 
-const getNibrsOffenderByOriAndFilter = (ori, v) => {
+const getNibrsOffenderByOriAndFilter = (ori, v, params) => {
   if (includes(NIBRS_OFFENDER_VALID_VALUES, v)) {
-    return get(`${API}/nibrs/offender/count/agencies/${ori}/${v}`);
+    return get(`${API}/nibrs/offender/count/agencies/${ori}/${v}`, params);
   }
   return badRequest();
 }
 
 // NIBRS Victim Offender Relationship
-const getNibrsVictimOffenderRelNational = () => (
-  get(`${API}/nibrs/victim/count/national/relationships`));
+const getNibrsVictimOffenderRelNational = params => (
+  get(`${API}/nibrs/victim/count/national/relationships`, params));
 
-const getNibrsVictimOffenderRelByStateAbbr = stateAbbr => (
-  get(`${API}/nibrs/victim/count/states/${stateAbbr}/relationships`));
+const getNibrsVictimOffenderRelByStateAbbr = (stateAbbr, params) => (
+  get(`${API}/nibrs/victim/count/states/${stateAbbr}/relationships`, params));
 
-const getNibrsVictimOffenderRelByOri = ori => (
-  get(`${API}/nibrs/victim/count/agencies/${ori}/relationships`));
+const getNibrsVictimOffenderRelByOri = (ori, params) => (
+  get(`${API}/nibrs/victim/count/agencies/${ori}/relationships`, params));
 
 // NIBRS Offenses
-const getNibrsOffenseNational = () => (
-  get(`${API}/nibrs/offense/count/national`));
+const getNibrsOffenseNational = params => (
+  get(`${API}/nibrs/offense/count/national`, params));
 
-const getNibrsOffenseByStateAbbr = stateAbbr => (
-  get(`${API}/nibrs/offense/count/states/${stateAbbr}`));
+const getNibrsOffenseByStateAbbr = (stateAbbr, params) => (
+  get(`${API}/nibrs/offense/count/states/${stateAbbr}`, params));
 
-const getNibrsOffenseByOri = ori => (
-  get(`${API}/nibrs/offense/count/agencies/${ori}`));
+const getNibrsOffenseByOri = (ori, params) => (
+  get(`${API}/nibrs/offense/count/agencies/${ori}`, params));
 
 export default {
   getNibrsVictimNational,

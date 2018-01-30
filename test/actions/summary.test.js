@@ -13,7 +13,7 @@ import {
   fetchingSummary,
   receivedSummary,
 } from '../../src/actions/summary'
-import summaryApi from '../../src/actions/api/summary'
+import api from '../../src/actions/api/summary'
 import * as summaryUtil from '../../src/util/summary'
 import { nationalKey } from '../../src/util/usa'
 
@@ -76,7 +76,7 @@ describe('summary action', () => {
 
     it('should dispatch SUMMARY_FETCHING and SUMMARY_RECEIVED', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(summaryApi, 'getSummaryRequests', () => [createPromise(success), createPromise(success)])
+      sandbox.stub(api, 'getSummaryRequests', () => [createPromise(success), createPromise(success)])
       fetchSummaries({ place: 'montana' })(dispatch).then(() => {
         const first = dispatch.getCall(0)
         const second = dispatch.getCall(1)
@@ -88,7 +88,7 @@ describe('summary action', () => {
 
     it('should dispatch SUMMARY_RECEIVED with properly formatted data', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(summaryApi, 'getSummaryRequests', () => [
+      sandbox.stub(api, 'getSummaryRequests', () => [
         createPromise({
           key: 'montana',
           results: ['fake-one'],
@@ -109,7 +109,7 @@ describe('summary action', () => {
 
     it('should dispatch SUMMARY_FAILED if API call fails', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(summaryApi, 'getSummaryRequests', () => [Promise.reject(true)])
+      sandbox.stub(api, 'getSummaryRequests', () => [Promise.reject(true)])
       fetchSummaries({ place: 'montana' })(dispatch).then(() => {
         const dispatched = dispatch.getCall(1)
         expect(dispatched.args[0].type).toEqual('SUMMARY_FAILED')

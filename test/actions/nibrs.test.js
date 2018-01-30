@@ -13,7 +13,7 @@ import {
   fetchingNibrs,
   receivedNibrs,
 } from '../../src/actions/nibrs'
-import api from '../../src/util/api'
+import api from '../../src/actions/api/nibrs'
 
 const createPromise = (res, err) => {
   if (!err) return Promise.resolve(res)
@@ -77,7 +77,7 @@ describe('nibrs actions', () => {
     it('should dispatch NIBRS_FETCHING and NIBRS_RECEIVED', done => {
       const dispatch = sandbox.spy()
 
-      sandbox.stub(api, 'getNibrsRequests', () => [
+      sandbox.stub(api, 'getNibrsCountsRequests', () => [
         createPromise(success),
         createPromise(success),
       ])
@@ -95,7 +95,7 @@ describe('nibrs actions', () => {
 
     it('should dispatch NIBRS_FAILED if API call fails', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(api, 'getNibrsRequests', () => [Promise.reject(true)])
+      sandbox.stub(api, 'getNibrsCountsRequests', () => [Promise.reject(true)])
       fetchNibrs({ place: 'montana' })(dispatch).then(() => {
         const dispatched = dispatch.getCall(1)
         expect(dispatched.args[0].type).toEqual('NIBRS_FAILED')

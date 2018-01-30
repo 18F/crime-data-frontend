@@ -36,7 +36,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/national'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -49,7 +49,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/national/sex'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -68,7 +68,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/states/AB'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -81,7 +81,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/states/AB/sex'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -100,7 +100,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/agencies/FAKEORI'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -113,7 +113,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/agencies/FAKEORI/sex'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -132,7 +132,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offender/count/national'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -145,7 +145,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offender/count/national/sex'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -164,7 +164,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offender/count/states/AB'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -177,7 +177,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offender/count/states/AB/sex'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -190,7 +190,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offender/count/agencies/FAKEORI'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -203,7 +203,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offender/count/agencies/FAKEORI/sex'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -216,7 +216,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/national/relationships'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -229,7 +229,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/states/AB/relationships'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -242,7 +242,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/victim/count/agencies/FAKEORI/relationships'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -255,7 +255,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offense/count/national'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -268,7 +268,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offense/count/states/AB'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
@@ -281,7 +281,7 @@ describe('api utility nibrs', () => {
           const spyArgs = spy.args[0];
           const expectedUrl = '/api-proxy/nibrs/offense/count/agencies/FAKEORI'
           expect(spyArgs[0]).toEqual(expectedUrl)
-          expect(spyArgs.length).toEqual(1)
+          expect(spyArgs.length).toEqual(2)
           done()
         })
       })
