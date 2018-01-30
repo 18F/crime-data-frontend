@@ -86,43 +86,4 @@ describe('api utility', () => {
       })
     })
   })
-
-  describe('fetching summary data', () => {
-    it('should request /estimates/national for national', done => {
-      const spy = sandbox.stub(http, 'get', () => createPromise(success))
-      api.fetchAggregates().then(() => {
-        const url = spy.args[0].pop()
-        expect(url.includes('/estimates/national')).toEqual(true)
-        done()
-      })
-    })
-
-    it('should request /estimates/states/:state if place is a state', done => {
-      const spy = sandbox.stub(http, 'get', () => createPromise(success))
-      api.fetchAggregates('california', 'state', 'ca').then(() => {
-        const url = spy.args[0].pop()
-        expect(url.includes('/estimates/states/ca')).toEqual(true)
-        done()
-      })
-    })
-
-    it('should request */agencies/count/* if place is an agency', done => {
-      const spy = sandbox.stub(http, 'get', () => createPromise(success))
-      api.fetchAgencyAggregates('NJ123', 'robbery').then(() => {
-        const url = spy.args[0][0]
-        const pathPartial = '/agencies/count/NJ123'
-        expect(url.includes(pathPartial)).toEqual(true)
-        done()
-      })
-    })
-
-    it('should return a data structure with key and results', done => {
-      sandbox.stub(http, 'get', () => createPromise(success))
-      api.fetchAggregates('california').then(data => {
-        expect(data.key).toEqual('california')
-        expect(data.results).toEqual(success.results)
-        done()
-      })
-    })
-  })
 })

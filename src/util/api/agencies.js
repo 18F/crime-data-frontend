@@ -28,8 +28,8 @@ const getAgencySumsByCounty = (stateAbbr, countyCode) => (
 const getAgencyOffensesByState = stateAbbr => (
   get(`${API}/agencies/count/states/${stateAbbr}/offenses`));
 
-const getAgencyOffensesByOri = ori => (
-  get(`${API}/agencies/count/${ori}/offenses`));
+const getAgencyOffensesByOri = (ori, params = {}) => (
+  get(`${API}/agencies/count/${ori}/offenses`, params));
 
 const getAgencyOffensesByCounty = (stateAbbr, countyCode) => (
   get(`${API}/agencies/count/states/offenses/${stateAbbr}/counts/${countyCode}`));

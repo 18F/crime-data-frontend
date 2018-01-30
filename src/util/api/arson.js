@@ -5,13 +5,13 @@ import { get } from '../http'
 export const API = '/api-proxy'
 
 // Arson
-const getArsonNational = () => (
-  get(`${API}/arson/national`));
+const getArsonNational = (params = {}) => (
+  get(`${API}/arson/national`, params));
 
-const getArsonByRegion = regionName => (
-  get(`${API}/arson/region/${regionName}`));
+const getArsonByRegion = (regionName, params = {}) => (
+  get(`${API}/arson/region/${regionName}`, params));
 
-const getArsonByState = stateAbbr => (
-  get(`${API}/arson/state/${stateAbbr}`));
+const getArsonByState = (stateAbbr, params = {}) => (
+  get(`${API}/arson/state/${stateAbbr}`, params));
 
 export default { getArsonNational, getArsonByRegion, getArsonByState }

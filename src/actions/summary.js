@@ -1,5 +1,9 @@
+import Promise from 'promise'
+
 import { SUMMARY_FAILED, SUMMARY_FETCHING, SUMMARY_RECEIVED } from './constants'
-import api from '../util/api'
+
+import summaryApi from './api/summary'
+
 import { calculateRates, reshapeData } from '../util/summary'
 
 export const failedSummary = error => ({
@@ -18,7 +22,7 @@ export const receivedSummary = summaries => ({
 
 export const fetchSummaries = params => dispatch => {
   dispatch(fetchingSummary())
-  const requests = api.getSummaryRequests(params)
+  const requests = summaryApi.getSummaryRequests(params)
   return Promise.all(requests)
     .then(data => reshapeData(data))
     .then(d => calculateRates(d, params.placeType))

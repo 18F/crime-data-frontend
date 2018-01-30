@@ -127,7 +127,7 @@ describe('api utility agencies', () => {
         const spyArgs = spy.args[0];
         const expectedUrl = '/api-proxy/agencies/count/FAKEORI/offenses'
         expect(spyArgs[0]).toEqual(expectedUrl)
-        expect(spyArgs.length).toEqual(1)
+        expect(spyArgs.length).toEqual(2)
         done()
       })
     })

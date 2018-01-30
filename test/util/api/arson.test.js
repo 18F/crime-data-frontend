@@ -36,7 +36,7 @@ describe('api utility arson', () => {
         const spyArgs = spy.args[0];
         const expectedUrl = '/api-proxy/arson/national'
         expect(spyArgs[0]).toEqual(expectedUrl)
-        expect(spyArgs.length).toEqual(1)
+        expect(spyArgs.length).toEqual(2)
         done()
       })
     })
@@ -49,7 +49,7 @@ describe('api utility arson', () => {
         const spyArgs = spy.args[0];
         const expectedUrl = '/api-proxy/arson/region/northeast'
         expect(spyArgs[0]).toEqual(expectedUrl)
-        expect(spyArgs.length).toEqual(1)
+        expect(spyArgs.length).toEqual(2)
         done()
       })
     })
@@ -62,7 +62,7 @@ describe('api utility arson', () => {
         const spyArgs = spy.args[0];
         const expectedUrl = '/api-proxy/arson/state/AB'
         expect(spyArgs[0]).toEqual(expectedUrl)
-        expect(spyArgs.length).toEqual(1)
+        expect(spyArgs.length).toEqual(2)
         done()
       })
     })

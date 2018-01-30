@@ -1,16 +1,12 @@
 /* eslint-disable no-nested-ternary */
 
 import upperFirst from 'lodash.upperfirst'
-import Promise from 'promise'
 
 import { get } from './http'
 import { mapToApiOffense } from './offenses'
-import { oriToState } from './agencies'
-import { slugify } from './text'
+import { nationalKey } from './usa'
 
 export const API = '/api-proxy'
-
-export const nationalKey = 'united-states'
 
 const dimensionEndpoints = {
   ageNum: 'age_num',
@@ -65,133 +61,6 @@ const getNibrsRequests = params => {
   return slices.map(s => fetchNibrs({ ...s, crime, place, placeType, placeId }))
 }
 
-const fetchResults = (key, path) =>
-  get(`${API}/${path}?per_page=500`).then(response => ({
-    key,
-    results: response.results,
-  }))
-
-const fetchArson = (place, placeId, placeType) => {
-  let url
-  if (placeType === 'state') {
-    url = `${API}/arson/states/${placeId}?per_page=50`
-  } else if (placeType === 'region') {
-    url = `${API}/arson/regions/${place}?per_page=50`
-  } else {
-    url = `${API}/arson/national?per_page=50`
-  }
-
-  return get(url).then(({ results }) =>
-    results.map(d => ({ year: d.year, arson: d.actual })),
-  )
-}
-
-const parseAggregates = ([estimates, arsons]) => ({
-  ...estimates,
-  results: estimates.results.map(datum => ({
-    ...datum,
-    arson: (arsons.find(a => a.year === datum.year) || {}).arson,
-  })),
-})
-
-const fetchAggregates = (place, placeType, placeId) => {
-  let estimatesApi
-  if (placeType === 'state') {
-    estimatesApi = `estimates/states/${placeId}`
-  } else if (placeType === 'region') {
-    estimatesApi = `estimates/regions/${place}`
-  } else {
-    estimatesApi = 'estimates/national'
-  }
-
-  const requests = [
-    fetchResults(place || nationalKey, estimatesApi),
-    fetchArson(place, placeId, placeType),
-  ]
-
-  return Promise.all(requests).then(parseAggregates)
-}
-
-const fetchAgencyAggregates = (ori, crime) => {
-  const url = `${API}/agencies/count/${ori}/offenses`
-  const params = { explorer_offense: mapToApiOffense(crime), per_page: 200 }
-  return get(url, params).then(d => ({ key: ori, results: d.results }))
-}
-
-const getSummaryRequests = ({ crime, place, placeType, placeId }) => {
-  if (placeType === 'agency') {
-    const stateName = slugify(oriToState(place))
-    return [
-      fetchAgencyAggregates(place, crime),
-      fetchAggregates(stateName, placeType, placeId),
-      fetchAggregates(),
-    ]
-  }
-  return [fetchAggregates(place, placeType, placeId), fetchAggregates()]
-}
-//
-// const getUcrParticipation = (place, placeId, placeType) => {
-//   let path
-//
-//   if (place === nationalKey) {
-//     path = 'participation/national';
-//   } else if (placeType === 'state') {
-//     path = `participation/states/${placeId}`
-//   } else if (placeType === 'region') {
-//     path = `participation/regions/${place}`
-//   }
-//
-//   return get(`${API}/${path}`).then(response => ({
-//     place,
-//     results: response.results,
-//   }))
-// }
-//
-// const getUcrParticipationRequests = filters => {
-//   const { place, placeType, placeId } = filters
-//
-//   const requests = [getUcrParticipation(place, placeId, placeType)]
-//
-//   // add national request (unless you already did)
-//   if (place !== nationalKey) {
-//     requests.push(getUcrParticipation(nationalKey))
-//   }
-//
-//   return requests
-// }
-
-
-// const getUcrRegions = () => {
-//   const path = 'lookup/region'
-//
-//   return get(`${API}/${path}`).then(response => ({
-//     results: response.results,
-//   }))
-// }
-//
-// const getUcrRegionRequests = () => {
-//   const requests = [];
-//   requests.push(getUcrRegions())
-//
-//   return requests
-// }
-
-
-// const getUcrStates = () => {
-//   const path = 'lookup/state?per_page=100'
-//
-//   return get(`${API}/${path}`).then(response => ({
-//     results: response.results,
-//   }))
-// }
-
-// const getUcrStatesRequests = () => {
-//   const requests = [];
-//   requests.push(getUcrStates())
-//
-//   return requests
-// }
-
 export const formatError = error => ({
   code: error.response.status,
   message: error.message,
@@ -245,11 +114,8 @@ const getNibrsCountsRequests = params => {
 }
 
 export default {
-  fetchAggregates,
-  fetchAgencyAggregates,
   fetchNibrs,
   getNibrsRequests,
   fetchNibrsCounts,
   getNibrsCountsRequests,
-  getSummaryRequests
 }
