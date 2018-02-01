@@ -12,6 +12,6 @@ const getArsonByRegion = (regionName, params = {}) => (
   get(`${API}/arson/region/${regionName}`, params));
 
 const getArsonByState = (stateAbbr, params = {}) => (
-  get(`${API}/arson/state/${stateAbbr}`, params));
+  get(`${API}/arson/states/${stateAbbr}`, params));
 
 export default { getArsonNational, getArsonByRegion, getArsonByState }

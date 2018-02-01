@@ -4,7 +4,6 @@ import {
   UCR_REGION_RECEIVED,
 } from './constants'
 import api from '../util/api/lookups'
-import reshapeData from '../util/region'
 
 export const failedUcrRegion = error => ({
   type: UCR_REGION_FAILED,
@@ -22,9 +21,8 @@ export const receivedUcrRegion = regions => ({
 
 export const fetchUcrRegion = () => dispatch => {
   dispatch(fetchingUcrRegion())
-  const requests = api.getLookupState(100)
-  return Promise.all(requests)
+  return api.getLookupRegion({ per_page: 100 })
     .then(response => ({ results: response.results }))
-    .then(data => dispatch(receivedUcrRegion(reshapeData(data))))
+    .then(data => dispatch(receivedUcrRegion(data)))
     .catch(error => dispatch(failedUcrRegion(error)))
 }

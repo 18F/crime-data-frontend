@@ -2,8 +2,9 @@ import http from 'axios'
 import flatten from 'lodash.flatten'
 import range from 'lodash.range'
 
+// adding http://127.0.01:6005 gets rid of the ECONNREFUSED 127.0.0.1:80
 export const get = (url, params = {}) =>
-  http.get(url, { params }).then(f => f.data)
+  http.get(`http://localhost:6005${url}`, { params }).then(f => f.data).catch(e => { console.log(e) })
 
 export const getAll = (url, params = {}) => {
   const all = get(url, params)

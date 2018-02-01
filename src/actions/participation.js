@@ -5,6 +5,7 @@ import {
 } from './constants'
 import api from '../util/api/participation'
 import { reshapeData } from '../util/participation'
+import { nationalKey } from '../util/usa'
 
 export const failedUcrParticipation = error => ({
   type: UCR_PARTICIPATION_FAILED,
@@ -23,17 +24,16 @@ export const receivedUcrParticipation = results => ({
 export const fetchUcrParticipation = filters => dispatch => {
   dispatch(fetchingUcrParticipation())
   const { place, placeType, placeId } = filters
-  const requests = [api.getParticipationNational()];
+  const requests = [api.getParticipationNational()
+    .then(response => ({ place: nationalKey, results: response.results }))];
   if (placeType === 'state') {
-    requests.push(api.getParticipationByState(placeId));
+    requests.push(api.getParticipationByState(placeId)
+      .then(response => ({ place, results: response.results })));
   } else if (placeType === 'region') {
-    requests.push(api.getParticipationByRegion(place));
+    requests.push(api.getParticipationByRegion(place)
+      .then(response => ({ place, results: response.results })));
   }
-  // const requests = api.getUcrParticipationRequests(filters, region, states)
   return Promise.all(requests)
-    // .then(response => ({
-    //   place, results: response.results
-    // }))
     .then(data => reshapeData(data))
     .then(results => dispatch(receivedUcrParticipation(results)))
     .catch(error => dispatch(failedUcrParticipation(error)))

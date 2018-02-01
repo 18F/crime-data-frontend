@@ -32,24 +32,24 @@ describe('api utility lookups', () => {
   describe('getLookupRegion()', () => {
     it('should be /lookup/region', done => {
       const spy = sandbox.stub(http, 'get', () => createPromise(success))
-      api.getLookupRegion().then(() => {
+      api.getLookupRegion({ per_page: 100 }).then(() => {
         const spyArgs = spy.args[0];
         const expectedUrl = '/api-proxy/lookup/region'
-        expect(spyArgs[0]).toEqual(expectedUrl)
-        expect(spyArgs.length).toEqual(1)
+        expect(spyArgs[0]).toContain(expectedUrl)
+        expect(spyArgs.length).toEqual(2)
         done()
       })
     })
   })
 
   describe('getLookupState()', () => {
-    it('should be /lookup/state?per_page=100', done => {
+    it('should be /lookup/state', done => {
       const spy = sandbox.stub(http, 'get', () => createPromise(success))
-      api.getLookupState(100).then(() => {
+      api.getLookupState({ per_page: 100 }).then(() => {
         const spyArgs = spy.args[0];
-        const expectedUrl = '/api-proxy/lookup/state?per_page=100'
-        expect(spyArgs[0]).toEqual(expectedUrl)
-        expect(spyArgs.length).toEqual(1)
+        const expectedUrl = '/api-proxy/lookup/state'
+        expect(spyArgs[0]).toContain(expectedUrl)
+        expect(spyArgs.length).toEqual(2)
         done()
       })
     })

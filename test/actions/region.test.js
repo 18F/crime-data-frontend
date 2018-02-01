@@ -57,7 +57,7 @@ describe('ucr actions', () => {
     it('should trigger fetching and received actions', done => {
       const dispatch = sandbox.spy()
       const fn = () => [createPromise({ results: [] })]
-      sandbox.stub(api, 'getLookupState', fn)
+      sandbox.stub(api, 'getLookupRegion', fn)
 
       fetchUcrRegion()(dispatch).then(() => {
         const first = dispatch.getCall(0)

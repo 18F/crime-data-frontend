@@ -32,7 +32,7 @@ const fetchEstimates = (place, placeId, placeType) => {
     promise = estimatesApi.getEstimatesNational()
   }
 
-  return promise.then(response => ({ place: place || nationalKey, results: response.results }))
+  return promise.then(response => ({ key: place || nationalKey, results: response.results }))
 }
 
 const fetchAgencyOffenses = (ori, crime) => {

@@ -5,10 +5,10 @@ import { get } from '../http'
 export const API = '/api-proxy'
 
 // Lookups
-const getLookupRegion = () => (
-  get(`${API}/lookup/region`));
+const getLookupRegion = params => (
+  get(`${API}/lookup/region`, params));
 
-const getLookupState = perPage => (
-  get(`${API}/lookup/state?per_page=${perPage}`));
+const getLookupState = params => (
+  get(`${API}/lookup/state`, params));
 
 export default { getLookupRegion, getLookupState }
