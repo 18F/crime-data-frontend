@@ -49,7 +49,7 @@ describe('summary api utility', () => {
         expect(a.length).toEqual(2)
         Promise.all(a).then(() => {
           expect(spy.calledWith('/api-proxy/estimates/states/california')).toEqual(true)
-          expect(spy.calledWith('/api-proxy/arson/state/california')).toEqual(true)
+          expect(spy.calledWith('/api-proxy/arson/states/california')).toEqual(true)
           expect(spy.calledWith('/api-proxy/estimates/national')).toEqual(true)
           expect(spy.calledWith('/api-proxy/arson/national')).toEqual(true)
           expect(spy.callCount).toEqual(4)
@@ -62,7 +62,7 @@ describe('summary api utility', () => {
         expect(a.length).toEqual(3)
         Promise.all(a).then(() => {
           expect(spy.calledWith('/api-proxy/estimates/states/kentucky')).toEqual(true)
-          expect(spy.calledWith('/api-proxy/arson/state/kentucky')).toEqual(true)
+          expect(spy.calledWith('/api-proxy/arson/states/kentucky')).toEqual(true)
           expect(spy.calledWith('/api-proxy/estimates/national')).toEqual(true)
           expect(spy.calledWith('/api-proxy/arson/national')).toEqual(true)
           expect(spy.calledWith('/api-proxy/agencies/count/KY123456/offenses')).toEqual(true)
@@ -76,9 +76,9 @@ describe('summary api utility', () => {
         expect(a.length).toEqual(2)
         Promise.all(a).then(data => {
           expect(data.length).toEqual(2)
-          expect(data[0].place).toEqual('california')
+          expect(data[0].key).toEqual('california')
           expect(data[0].results).toEqual(success.results)
-          expect(data[1].place).toEqual(nationalKey)
+          expect(data[1].key).toEqual(nationalKey)
           expect(data[1].results).toEqual(success.results)
           done()
         })

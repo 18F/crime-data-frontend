@@ -60,7 +60,7 @@ describe('ucr participation actions', () => {
   describe('fetchUcrParticipation()', () => {
     it('should trigger fetching and received actions', done => {
       const dispatch = sandbox.spy()
-      const output = () => [createPromise({ place: 'california', results: [] })]
+      const output = () => createPromise({ place: 'california', results: [] })
       const input = { place: 'california' }
       sandbox.stub(api, 'getParticipationNational', output)
 
@@ -75,7 +75,7 @@ describe('ucr participation actions', () => {
 
     it('should call api.getParticipationNational exactly 1 time', done => {
       const dispatch = sandbox.spy()
-      const output = () => [createPromise({ place: 'california', results: [] })]
+      const output = () => createPromise({ place: 'california', results: [] })
       const input = {}
       const spy = sandbox.stub(api, 'getParticipationNational', output)
 
@@ -87,7 +87,7 @@ describe('ucr participation actions', () => {
 
     it('should dispatch UCR_PARTICIPATION_FAILED if API call fails', done => {
       const dispatch = sandbox.spy()
-      sandbox.stub(api, 'getParticipationNational', () => [createPromise({}, 'reject')])
+      sandbox.stub(api, 'getParticipationNational', () => createPromise({}, 'reject'))
 
       const filter = { placeType: 'state', place: 'california', placeId: 'ca' }
       fetchUcrParticipation(filter)(dispatch).then(() => {

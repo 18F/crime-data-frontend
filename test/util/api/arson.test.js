@@ -56,11 +56,11 @@ describe('api utility arson', () => {
   })
 
   describe('getArsonByState()', () => {
-    it('should be /arson/state/AB', done => {
+    it('should be /arson/states/AB', done => {
       const spy = sandbox.stub(http, 'get', () => createPromise(success))
       api.getArsonByState('AB').then(() => {
         const spyArgs = spy.args[0];
-        const expectedUrl = '/api-proxy/arson/state/AB'
+        const expectedUrl = '/api-proxy/arson/states/AB'
         expect(spyArgs[0]).toEqual(expectedUrl)
         expect(spyArgs.length).toEqual(2)
         done()
