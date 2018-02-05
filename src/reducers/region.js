@@ -13,7 +13,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case UCR_REGION_FAILED:
+    if (action.error.response && action.error.config) {
       return {
         ...state,
         error: {
@@ -23,6 +23,12 @@ export default (state = initialState, action) => {
         },
         loading: false,
       }
+    }
+    return {
+      ...state,
+      error: { message: action.error.message },
+      loading: false,
+    }
     case UCR_REGION_FETCHING:
       return {
         ...state,

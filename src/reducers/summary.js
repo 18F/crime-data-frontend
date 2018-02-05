@@ -13,13 +13,20 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SUMMARY_FAILED:
+      if (action.error.response && action.error.config) {
+        return {
+          ...state,
+          error: {
+            code: action.error.response.status,
+            message: action.error.message,
+            url: action.error.config.url,
+          },
+          loading: false,
+        }
+      }
       return {
         ...state,
-        error: {
-          code: action.error.response.status,
-          message: action.error.message,
-          url: action.error.config.url,
-        },
+        error: { message: action.error.message },
         loading: false,
       }
     case SUMMARY_FETCHING:
