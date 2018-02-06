@@ -35,22 +35,22 @@ class Home extends React.Component {
       const id = e.target.getAttribute('id')
       if (!id) return
       const { actions, filters, router } = this.props
-      const { crime } = filters
-      const placeNew = { place: slugify(lookupStateByAbbr(states.states, id).state_name), placeType: 'state', placeId: id }
+      const { pageType } = filters
+      const placeNew = { place: slugify(lookupStateByAbbr(states.states, id).state_name), placeType: 'state', placeId: id, page: 'crime' }
       actions.updateFilters(placeNew)
-      actions.updateApp({ crime, ...placeNew }, router)
+      actions.updateApp({ pageType, ...placeNew }, router)
     } else {
       // REGION DATA GET PLACES
       const { region, states } = this.props
       const id = e.target.getAttribute('id')
       if (!id) return
       const { actions, filters, router } = this.props
-      const { crime } = filters
+      const { pageType } = filters
       const placeNew = { place: lowerCase(lookupRegionByCode(region.regions, lookupStateByAbbr(states.states, id).region_code).region_name),
        placeType: 'region',
        placeId: lookupStateByAbbr(states.states, id).region_code }
       actions.updateFilters(placeNew)
-      actions.updateApp({ crime, ...placeNew }, router)
+      actions.updateApp({ pageType, ...placeNew }, router)
     }
   }
 
@@ -62,7 +62,7 @@ class Home extends React.Component {
 
   selectCrime = e => {
     const { actions } = this.props
-    actions.updateFilters({ crime: slugify(e.target.value) })
+    actions.updateFilters({ pageType: slugify(e.target.value) })
   }
 
   selectLocation = e => {
@@ -184,6 +184,12 @@ class Home extends React.Component {
             </div>
             <div className="py4 sm-py7 sm-col-9 mx-auto">
               <UsaMap mapClick={this.handleMapClick} place={mapSelected} stateView={statesView} states={states} region={region} />
+            </div>
+            <div className="clearfix mxn2 mb4 flex">
+               <div className="inline-block clearfix mx-auto">
+                  <button className="left btn btn-outline  x-group-item rounded-left" value='states' onClick={this.handleMapTypeChange} >States</button>
+                  <button className="left btn btn-outline x-group-item rounded-right" value='regions' onClick={this.handleMapTypeChange} >Regions</button>
+                </div>
             </div>
             <div className="mb7 sm-hide md-hide lg-hide">
               <button
