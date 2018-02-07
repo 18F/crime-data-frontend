@@ -25,7 +25,7 @@ const fetchArson = (place, placeId, placeType) => {
 const fetchEstimates = (place, placeId, placeType) => {
   let promise
   if (placeType === 'state') {
-    promise = estimatesApi.getEstimatesByState(place)
+    promise = estimatesApi.getEstimatesByState(placeId)
   } else if (placeType === 'region') {
     promise = estimatesApi.getEstimatesByRegion(place)
   } else {

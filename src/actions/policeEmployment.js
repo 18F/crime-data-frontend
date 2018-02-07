@@ -31,7 +31,7 @@ export const fetchPoliceEmployment = params => dispatch => {
   }
 
   return request
-    // .then(data => reshapeData(data))
+    .then(data => reshapeData(data))
     .then(data => dispatch(receivedPoliceEmployment(data)))
     .catch(error => dispatch(failedPoliceEmployment(error)))
 }

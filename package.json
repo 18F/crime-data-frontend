@@ -25,6 +25,7 @@
     "agencies": "node scripts/agencies/update.js"
   },
   "dependencies": {
+    "array-includes": "^3.0.3",
     "axios": "^0.15.3",
     "babel-polyfill": "^6.20.0",
     "body-parser": "^1.17.1",
